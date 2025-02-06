@@ -9,7 +9,6 @@ Features
     - Interactive heart button 
     - Call-to-action (CTA) paragraph that appears with a smooth animation ("Click here!")
     - Canvas-based pop-up with a fun animated heart and a message ("You are lovely/amazing!")
-    - Responsive layout for mobile, tablet, and desktop devices
 
 Technologies Used
 
