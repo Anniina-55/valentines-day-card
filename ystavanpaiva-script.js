@@ -1,4 +1,3 @@
-
 // Style heart button
 const heartButton = document.getElementById("button1")
 heartButton.style.backgroundColor = "pink";
@@ -82,7 +81,7 @@ heartButton.addEventListener("click", function(){
 })
 
 // Creating heading to wish happy Valentine's Day
-const heading = querySelector("h1");
+const heading = document.querySelector("h1");
 heading.textContent = "Hyvää ystävänpäivää!"; 
 heading.style.color = "rgb(194, 24, 91)";
 heading.style.fontFamily = "Ribeye Marrow";
