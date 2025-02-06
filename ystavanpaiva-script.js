@@ -91,11 +91,6 @@ heading.style.letterSpacing = "5px";
 
 // Heading animation
 window.onload = function() {;
-    heading.style.opacity = "0";
-    heading.style.visibility = "hidden";
-    heading.style.transform = "scale(0)";
-    heading.style.transition = "opacity 1s ease-in, transform 1s ease-out, visibility 0s 1s";
-
     setTimeout(() => {
         heading.style.opacity = "1";
         heading.style.visibility = "visible";
