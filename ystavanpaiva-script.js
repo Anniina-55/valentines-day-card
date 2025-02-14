@@ -8,13 +8,49 @@ const banner = document.querySelector(".banner");
 const newParagraph = document.createElement("p")
 newParagraph.textContent = "Klikkaa tästä -->";
 newParagraph.style.fontSize = "1.2rem";
-newParagraph.style.padding = "20px";
+newParagraph.style.padding = "15px";
+newParagraph.style.visibility = "hidden";
+
+// Make sure text aligns correctly depending on screen size
+function adjustLayout() {
+    banner.style.width = "100%";
+    banner.style.display = "flex";
+    banner.style.alignItems = "center";  
+    banner.style.minHeight = "60px";
+
+    if (window.innerWidth < 768) {  // Mobile layout
+        banner.style.flexDirection = "column";
+        banner.style.alignItems = "center";
+        banner.style.textAlign = "center";
+
+        newParagraph.style.display = "block";
+        newParagraph.style.textAlign = "center";
+        heartButton.style.display = "block"; 
+        heartButton.style.margin = "0 auto";
+    } else {  // Laptop layout
+        banner.style.flexDirection = "row";
+        banner.style.justifyContent = "space-between";
+        banner.style.padding = "10px 20px";
+        newParagraph.style.textAlign = "right";
+        newParagraph.style.display = "inline-block";
+        heartButton.style.display = "inline-block";
+        heartButton.style.margin = "0"; // Keep on right
+    }
+}
+
+// Run the function on load and resize
+adjustLayout();
+window.addEventListener("resize", adjustLayout);
 
 // CTA animation to appear after 3 seconds
 setTimeout(() => {
     banner.insertBefore(newParagraph, heartButton); 
+    newParagraph.style.visibility = "visible";
     newParagraph.style.marginLeft = "auto";
 }, 3000);
+
+// banner.appendChild(newParagraph);
+// banner.appendChild(heartButton);
 
 // Add event listeners to the heart button
 
@@ -30,8 +66,8 @@ heartButton.addEventListener("mouseout", function() {
 // Clicking evokes a pop up heart animation
 heartButton.addEventListener("click", function(){
     const popUpCanvas = document.createElement("canvas");
-    popUpCanvas.width = 400;
-    popUpCanvas.height = 400;
+    popUpCanvas.width = Math.min(400, window.innerWidth * 0.8);
+    popUpCanvas.height = Math.min(400, window.innerHeight * 0.5);
     popUpCanvas.style.backgroundColor = "pink";
     popUpCanvas.style.borderRadius = "10%";
     popUpCanvas.style.position = "fixed";
@@ -128,7 +164,7 @@ window.onload = function() {;
             // Random y position 
             y: Math.random() * heartBox.height, 
             // Random size (10px - 20px)
-            size: Math.random() * 10 + 10, 
+            size: Math.random() * (window.innerWidth < 600 ? 5 : 10) + 10,  // Smaller hearts on small screens
             // Random growth speed
             speed: Math.random() * 2 + 1, 
             // Random transparency
